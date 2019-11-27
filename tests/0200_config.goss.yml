@@ -1,0 +1,8 @@
+---
+
+file:
+  /etc/telegraf/telegraf.conf:
+    exists: true
+    contains:
+      - hostname = "test.manala.dev"
+      - quiet = true
