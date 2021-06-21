@@ -1,5 +1,15 @@
 ---
 
+- name: Add apt key for influx
+  ansible.builtin.apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+
+- name: Add Influx repository
+  ansible.builtin.apt_repository:
+    repo: deb https://repos.influxdata.com/{{ ansible_os_family | lower }} {{ ansible_distribution_release | lower}} stable
+    state: present
+
 - name: install > Packages
   apt:
     name: "{{ manala_telegraf_install_packages|default(manala_telegraf_install_packages_default, True) }}"
